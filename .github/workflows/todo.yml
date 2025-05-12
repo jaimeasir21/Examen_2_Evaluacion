@@ -40,18 +40,6 @@ jobs:
           flake8 . --count --max-complexity=10 --max-line-length=79 --statistics
 
 
-
-  ping:
-    name: Ping a AWS
-    runs-on: ubuntu-latest
-    env:
-      URL: 34.234.109.26
-      METHOD: GET
-    steps:
-      - id: ping
-        uses: sisodiya2421/pinger@master  
-
-
   build_and_push:
     runs-on: ubuntu-latest
     needs: lint
@@ -86,6 +74,18 @@ jobs:
             docker rm -f web1
             docker rmi ${{ secrets.USER_DH }}/${{ env.IMAGE_NAME }}
             docker run -d -p 80:8000 --name web1 ${{secrets.USER_DH}}/${{env.IMAGE_NAME}}
+
+
+  ping:
+    name: Ping a AWS
+    runs-on: ubuntu-latest
+    needs: deploy
+    env:
+      URL: ${{ secrets.IP_EC2 }}
+      METHOD: GET
+    steps:
+      - id: ping
+        uses: sisodiya2421/pinger@master  
 
 
 
