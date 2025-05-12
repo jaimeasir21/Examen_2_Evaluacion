@@ -69,7 +69,7 @@ jobs:
           key: ${{ secrets.CLAVE_EC2 }}
           port: 22 # ${{ secrets.PORT }}
           script: |
-            sleep 30
+            sleep 40
             docker rm -f web1
             docker rmi ${{ secrets.USER_DH }}/${{ env.IMAGE_NAME }}
             docker run -d -p 80:8000 --name web1 ${{secrets.USER_DH}}/${{env.IMAGE_NAME}}
