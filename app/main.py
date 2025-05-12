@@ -10,3 +10,7 @@ def on_startup():
 
 app.include_router( tasks.router )
 
+@app.get("/version")
+def version():
+    return {"message": "Pulido Diaz, Jaime - v0"}
+
