@@ -15,5 +15,5 @@ app.include_router(tasks.router)
 
 @app.get("/version")
 def version():
-    test = true
+    # test = true
     return {"message": "Pulido Diaz, Jaime - v.1 Ango"}
